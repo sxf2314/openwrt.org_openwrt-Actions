@@ -7,7 +7,8 @@
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-⒈"mt7621_xiaomi_nand_128m.dtsi" Add modifications:
+⒈"mt7621_xiaomi_nand_128m.dtsi" 
+Add modifications:
 #add usbpower on and off
 
 	gpio_export {
