@@ -32,8 +32,7 @@ gpio_export {
 			gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
 			enable-active-high;
 	};
-
-━━━━━━━━━━━━━━━━━━━━━━━━
+ ━━━━━━━━━━━━━━━━━━━━━━━━
 
 #修改后:
 	gpio_export {
@@ -55,8 +54,9 @@ gpio_export {
 		gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
 		enable-active-high;
 	};
-
+ 
 ━━━━━━━━━━━━━━━━━━━━━━━━
+
 ⒉创建目录和文件files/etc/uci-defaults/mi3g 
 增加了第1次启动脚本mi3g:
 
