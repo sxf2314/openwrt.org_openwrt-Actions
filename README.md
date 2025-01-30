@@ -10,17 +10,17 @@
 ⒈"mt7621_xiaomi_nand_128m.dtsi" Add modifications:
 #add usbpower on and off
 
-gpio_export {
-	compatible = "gpio-export";
-	#size-cells = <0>;
+	gpio_export {
+		compatible = "gpio-export";
+		#size-cells = <0>;
 
-	usb3power {
-		gpio-export,name = "usb3power";
-		gpio-export,output = <1>;
-		gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
+		usb3power {
+			gpio-export,name = "usb3power";
+			gpio-export,output = <1>;
+			gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
+		};
+
 	};
-
-
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -35,8 +35,8 @@ gpio_export {
 	};
 
  ━━━━━━━━━━━━━━━━━━━━━━━━
-
 #修改后:
+
 	gpio_export {
 		compatible = "gpio-export";
 		#size-cells = <0>;
