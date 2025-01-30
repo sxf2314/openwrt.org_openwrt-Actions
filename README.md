@@ -20,7 +20,8 @@ gpio_export {
 		gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
 	};
 
-};
+
+
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
 #原来的:
@@ -83,7 +84,6 @@ uci set network.usbwan6=interface
 uci set network.usbwan6.proto='dhcpv6'
 uci set network.usbwan6.device='eth1'
 uci commit network
-
 echo "All done!"
 
 
