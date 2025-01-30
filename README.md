@@ -7,7 +7,7 @@
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-⒈"mt7621_xiaomi_nand_128m.dtsi" 
+⒈"mt7621_xiaomi_mi-router-3g.dts" 
 Add modifications:
 #add usbpower on and off
 
