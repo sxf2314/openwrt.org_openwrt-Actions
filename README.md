@@ -1,12 +1,96 @@
-基于LAN源码编译！
+##################################
+源码修改 
+- 关闭电源: Turn off the usbpower:
+-  echo '0' > /sys/class/gpio/usb3power/value
+- 打开电源: Turn on the usbpower:
+-  echo '1' > /sys/class/gpio/usb3power/value
 
-免配置，支持IPV6
+━━━━━━━━━━━━━━━━━━━━━━━━
 
-基本上能找到的插件全部编译进去
-谢谢支持！
+⒈"mt7621_xiaomi_nand_128m.dtsi" Add modifications:
+#add usbpower on and off
 
-第一个口为WAN口，剩余所有接口为LAN口
-LAN口地址为：192.168.100.1，并开启了DHCP功能.
-账号:root默认密码为：admin
-请用Google Chrome浏览器来进入WEB管理界面，其他浏览器可能不兼容！！！（ETH0--WAN,接光猫，EHT1---EHT7口接电脑用网线调试 EHT0口---接光猫，其它EHT1---EHT3口接电脑用网线调试
-或LAN1口---接光猫，其它LAN2---LAN4口接电脑用网线调试 傻瓜式接线方式哦！！
+gpio_export {
+	compatible = "gpio-export";
+	#size-cells = <0>;
+
+	usb3power {
+		gpio-export,name = "usb3power";
+		gpio-export,output = <1>;
+		gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
+	};
+
+};
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+#原来的:
+	reg_usb_vbus: regulator {
+			compatible = "regulator-fixed";
+			regulator-name = "usb_vbus";
+			regulator-min-microvolt = <5000000>;
+			regulator-max-microvolt = <5000000>;
+			gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
+			enable-active-high;
+	};
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+#修改后:
+	gpio_export {
+		compatible = "gpio-export";
+		#size-cells = <0>;
+
+		usb3power {
+		gpio-export,name = "usb3power";
+		gpio-export,output = <1>;
+		gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
+		};
+
+	};
+	reg_usb_vbus: regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "usb_vbus";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+	};
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+⒉创建目录和文件files/etc/uci-defaults/mi3g 
+增加了第1次启动脚本mi3g:
+
+
+#r3g 24.10主分支_master https://github.com/sxf2314/openwrt.git
+#开WiFi 5g WiFi信道设置为国家_俄罗斯（俄罗斯没有任何限制）
+uci set wireless.radio0.disabled='0'
+uci set wireless.radio1.disabled='0'
+uci set wireless.radio1.channel='64'
+uci set wireless.radio1.country='RU'
+uci commit wireless
+
+#设置 usbwan usbwan6 
+#在这个版本的openwrt  手机的Usb共享 不是usb0 而是eth1
+uci set network.usbwan=interface
+uci set network.usbwan.proto='dhcp'
+uci set network.usbwan.device='eth1'
+uci set network.usbwan6=interface
+uci set network.usbwan6.proto='dhcpv6'
+uci set network.usbwan6.device='eth1'
+uci commit network
+
+echo "All done!"
+##################################
+固件设置
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+时区选择:上海
+usbwan usbwan6:加入防火墙
+在防火墙下开启:硬件加速
+Ipv6设置 
+usbwan6 :设置成主接口 ,设置成中继 ,学习
+        lan :都设置成中继 ,学习
+##################################
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+			time:2025.01.30
