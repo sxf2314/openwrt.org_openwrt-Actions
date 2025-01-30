@@ -67,12 +67,13 @@ gpio_export {
 
 #r3g 24.10主分支_master https://github.com/sxf2314/openwrt.git
 #开WiFi 5g WiFi信道设置为国家_俄罗斯（俄罗斯没有任何限制）
+
+
 uci set wireless.radio0.disabled='0'
 uci set wireless.radio1.disabled='0'
 uci set wireless.radio1.channel='64'
 uci set wireless.radio1.country='RU'
 uci commit wireless
-
 #设置 usbwan usbwan6 
 #在这个版本的openwrt  手机的Usb共享 不是usb0 而是eth1
 uci set network.usbwan=interface
@@ -84,6 +85,8 @@ uci set network.usbwan6.device='eth1'
 uci commit network
 
 echo "All done!"
+
+
 ##################################
 固件设置
 ━━━━━━━━━━━━━━━━━━━━━━━━
