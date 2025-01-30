@@ -22,17 +22,7 @@
 
 	};
 
-━━━━━━━━━━━━━━━━━━━━━━━━
 
-#原来的:
-	reg_usb_vbus: regulator {
-			compatible = "regulator-fixed";
-			regulator-name = "usb_vbus";
-			regulator-min-microvolt = <5000000>;
-			regulator-max-microvolt = <5000000>;
-			gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
-			enable-active-high;
-	};
 
  ━━━━━━━━━━━━━━━━━━━━━━━━
 #修改后:
