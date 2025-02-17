@@ -1,0 +1,2 @@
+sed -i "/option disabled '1'/d" /etc/config/wireless
+echo "All done!"
