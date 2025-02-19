@@ -120,6 +120,8 @@ case "$1" in
         daemon_main
         ;;
     *)
+#chmod +x /etc/usbpower
+#/etc/usbpower
         echo "使用方法: $0 [command]"
         echo "命令列表:"
         echo "  install     安装为系统服务"
