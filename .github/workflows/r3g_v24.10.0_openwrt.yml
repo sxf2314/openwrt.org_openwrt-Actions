@@ -105,7 +105,13 @@ jobs:
         make download -j8
      #     find dl -size -1024c -exec ls -l {} \;
      #     find dl -size -1024c -exec rm -f {} \;
-
+     
+    - name: Upload .config to GitHub Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: openwrt-config
+        path: openwrt/.config
+        
     - name: Compile the firmware
       id: compile
       run: |
